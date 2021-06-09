@@ -1,0 +1,139 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;600&display=swap');
+
+/* Styles*/
+* {
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  position: relative;
+  background: white;
+  font-family: 'Prompt', sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1rem 1.875rem;
+  background: white;
+  z-index: 10;
+  justify-content: space-between;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  min-height: 25px
+  box
+}
+
+.logo {
+  color: black;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  margin-right: 1em;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+#content {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+}
+.heading-centered {
+  margin: auto;
+  margin-top: 15vh;
+  max-width: 400px;
+  justify-content: center;
+  line-height: 52px;
+  font-size: 48px;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.info {
+  max-width: 400px;
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 32px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+/* Style The Dropdown Button */
+.topic-btn {
+  background-color: #9D2235;
+  color: #FFC72C;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 30px;
+  width: 400px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.topic-menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f9f9f9;
+  width: 400px;
+  margin: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.topic-menu:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.topic-menu:hover .topic-btn {
+  background-color: #000000;
+}
+
+#visuals {
+  display: none;
+}

@@ -1,0 +1,55 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;600&display=swap');
+
+/* Styles*/
+* {
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  position: relative;
+  background: white;
+  font-family: 'Prompt', sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1rem 1.875rem;
+  background: white;
+  z-index: 10;
+  justify-content: space-between;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  min-height: 25px
+  box
+}
+
+.logo {
+  color: black;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  margin-right: 1em;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
