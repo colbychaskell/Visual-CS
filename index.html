@@ -3,37 +3,41 @@
   <head>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/index.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
 
     <link rel="icon" type="image/png" href="img/icon.png">
     <title>CSCI 104 Visualizer</title>
   </head>
   <body>
     <!-- Top Nav Bar-->
-    <header>
-        <div class="title">
-          <a href="#">
-            <img class="logo" src="img/icon.png">
-          </a>
-          <a href="#">CSCI 104 Visualizer</a>
+    <section id="container">
+      <section  id="nav">
+          <div class="title">
+            <a href="#">
+              <img class="logo" src="img/icon.png">
+            </a>
+            <a href="#">CSCI 104 Visualizer</a>
+          </div>
+          <a href="#">Colby Haskell</a>
+      </section>
+      <section class="content">
+        <h1 class="heading-centered">All of CSCI 104 Condensed and Visualized </h1>
+        <p class="info">Choose a CSCI 104 topic to explore through visual representation. You can easily test various uses and compare algorithms when necessary.</p>
+        <div class="topic-menu">
+          <button onclick="showMenu()" class="topic-btn">Choose a topic</button>
+          <div id="dropMenu" class="dropdown-content">
+          <a href="#">Data Structures</a>
+          <a href="#">Graph Search Algorithms</a>
+          <a href="#">Trees</a>
+          </div>
         </div>
-        <a href="#">Colby Haskell</a>
-    </header>
-    <section id="content">
-      <h1 class="heading-centered">All of CSCI 104 Condensed and Visualized </h1>
-      <p class="info">Choose a CSCI 104 topic to explore through visual representation. You can easily test various uses and compare algorithms when necessary.</p>
-      <div class="topic-menu">
-        <button class="topic-btn">Choose a topic</button>
-        <div class="dropdown-content">
-        <a href="#">Data Structures</a>
-        <a href="#">Graph Search Algorithms</a>
-        <a href="#">Trees</a>
-        </div>
-      </div>
+      </section>
     </section>
-    <section id="visuals">
+    <!--<section id="visuals">
 
 
-    </section>
+    </section>-->
 
   </body>
 </html>

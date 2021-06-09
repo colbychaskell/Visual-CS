@@ -3,50 +3,75 @@
 
 /* Styles*/
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 html, body {
   overflow-x: hidden;
+}
+div {
+  display: block;
 }
 
 body {
   margin: 0px !important;
   padding: 0px !important;
-  position: relative;
   background: white;
   font-family: 'Prompt', sans-serif;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: block;
+  min-height: 100%;
 }
 
-header {
+#container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#nav {
   position: fixed;
   display: flex;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  top: 0px;
+  left: 0px;
+  right: 0px;
   padding: 1rem 1.875rem;
   background: white;
   z-index: 10;
   justify-content: space-between;
+  align-items: center;
+
 }
 
-header a {
+#nav a {
   text-decoration: none;
   color: black;
   font-weight: 800;
-  min-height: 25px
-  box
+  font-size: 1rem;
+  min-height: 20px;
+  color: black;
+  margin-right: 1em;
+}
+#nav a:last-child {
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 400px) {
+  #nav > a {
+      display: none;
+  }
+  #nav > .title {
+    width: 100%;
+    justify-content: space-between;
+  }
+
 }
 
 .logo {
-  color: black;
-  background-color: white;
   height: 30px;
   width: 30px;
-  margin-right: 1em;
 }
 
 .title {
@@ -55,14 +80,16 @@ header a {
 }
 
 #content {
+  width: 100% !important;
   position: relative;
-  width: 100vw;
+  top: 0;
+  left: 0;
   min-height: 100vh;
 }
 .heading-centered {
   margin: auto;
   margin-top: 15vh;
-  max-width: 400px;
+  max-width: 300px;
   justify-content: center;
   line-height: 52px;
   font-size: 48px;
@@ -71,7 +98,7 @@ header a {
 }
 
 .info {
-  max-width: 400px;
+  max-width: 300px;
   font-weight: 300;
   font-size: 23px;
   line-height: 32px;
@@ -89,7 +116,7 @@ header a {
   cursor: pointer;
   margin: auto;
   margin-top: 30px;
-  width: 400px;
+  width: 300px;
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 
@@ -98,19 +125,22 @@ header a {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 300px;
   margin: auto;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
   position: relative;
   background-color: #f9f9f9;
-  width: 400px;
+  width: 300px;
   margin: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+}
+
+#dropMenu {
+  display: none;
 }
 
 /* Links inside the dropdown */
