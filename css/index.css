@@ -7,6 +7,7 @@
 }
 html, body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 div {
   display: block;
@@ -37,12 +38,13 @@ body {
   top: 0px;
   left: 0px;
   right: 0px;
-  padding: 1rem 1.875rem;
+  padding: 1rem 2rem;
   background: white;
   z-index: 10;
   justify-content: space-between;
   align-items: center;
-
+  align-content: center;
+  border-bottom: 1px solid #edf2f7;
 }
 
 #nav a {
@@ -51,22 +53,10 @@ body {
   font-weight: 800;
   font-size: 1rem;
   min-height: 20px;
-  color: black;
-  margin-right: 1em;
+  display: flex;
 }
 #nav a:last-child {
     margin-right: 0px;
-}
-
-@media screen and (max-width: 400px) {
-  #nav > a {
-      display: none;
-  }
-  #nav > .title {
-    width: 100%;
-    justify-content: space-between;
-  }
-
 }
 
 .logo {
@@ -79,35 +69,36 @@ body {
   align-items: center;
 }
 
-#content {
+.content {
   width: 100% !important;
+  min-height: 100vh;
   position: relative;
   top: 0;
   left: 0;
-  min-height: 100vh;
-  padding-bottom: 20px;
+  margin-top: 63px;
+  margin-bottom: 60px;
 }
 .heading-centered {
   margin: auto;
   margin-top: 15vh;
-  max-width: 300px;
+  width: 330px;
   justify-content: center;
-  line-height: 52px;
-  font-size: 48px;
+  line-height: 60px;
+  font-size: 45px;
   font-weight: 600;
-  justify-content: center;
 }
 
 .info {
-  max-width: 300px;
-  font-weight: 300;
+  max-width: 330px;
+  font-weight: 200;
   font-size: 23px;
-  line-height: 32px;
+  line-height: 34px;
   margin: auto;
   margin-top: 30px;
+  justify-content: center;
 }
 
-/* Style The Dropdown Button */
+/*Button to choose topic */
 .topic-btn {
   background-color: #9D2235;
   color: #FFC72C;
@@ -116,36 +107,39 @@ body {
   border: none;
   cursor: pointer;
   margin: auto;
-  margin-top: 30px;
-  width: 300px;
+  width: 330px;
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 
-/* The container <div> - needed to position the dropdown content */
 .topic-menu {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: auto;
+  max-width: 330px;
+  margin: 30px auto;
+  justify-content: center;
 }
 
-/* Dropdown Content (Hidden by Default) */
+.topic-menu:hover #dropMenu {
+  display: block;
+}
+
 .dropdown-content {
   position: relative;
   background-color: #f9f9f9;
-  width: 300px;
+  width: 330px;
   margin: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
+  max-height: 165px;
+  overflow-y: scroll;
 }
 
 #dropMenu {
   display: none;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -153,10 +147,11 @@ body {
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
 
-/* Show the dropdown menu on hover */
+/* Show topic menu on hover */
 .topic-menu:hover .dropdown-content {
   display: block;
 }
@@ -167,5 +162,117 @@ body {
 }
 
 #visuals {
+  display: block;
+  /*width: 100%;*/
+  margin: 5vw 5vw;
+  border: 2px solid #edf2f7;
+}
+
+#data-visual {
+  background-color: green;
+  height: 100%;
+  opacity: 0;
   display: none;
+}
+
+#graph-visual {
+  background-color: white;
+  /*width: 100%;*/
+  opacity: 1;
+  display: block;
+}
+
+#graph-visual table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+#graph-visual #grid {
+  /*max-width: 90vw;*/
+  max-height: 90vh;
+  width: 100%;
+}
+
+#graph-visual #grid td {
+  width: 22px;
+  height: 22px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+#graph-visual td:hover {
+  background-color: green;
+}
+
+#graph-visual > .addWall td:hover {
+  background-image: url("../img/house20.png");
+  background-color: white;
+}
+
+#graph-visual > .moveCar td:hover {
+  background-image: url("../img/car20.png");
+  background-color: white;
+}
+
+#graph-visual #grid .car {
+  background-image: url("../img/car20.png");
+  background-repeat: no-repeat;
+}
+
+#graph-visual #grid .house {
+  background-image: url("../img/house20.png");
+  background-repeat: no-repeat;
+}
+#graph-visual #grid .visited {
+  background-color: blue;
+}
+
+#graph-visual #grid .path {
+  background-color: green;
+}
+
+#trees-visual {
+  background-color: blue;
+  height: 100%;
+  opacity: 0;
+  display: none;
+}
+
+/* Hide Name in nav on Mobile Screens */
+@media screen and (max-width: 440px) {
+  #nav > a {
+      display: none;
+  }
+  #nav > .title {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 800px and max-height: 600px) {
+  #graph-visual > #grid td {
+    width: 15px;
+    height: 15px;
+  }
+  #graph-visual > #grid .car {
+    background-image: url("../img/car12.png");
+    background-repeat: no-repeat;
+  }
+
+  #graph-visual > #grid .house {
+    background-image: url("../img/house12.png");
+    background-repeat: no-repeat;
+  }
+}
+
+/* Hide rows and cols on smaller screens */
+@media only screen and (max-width: 800px) {
+  .col53, .col52, .col51, .col50, .col49, .col0, .col1, .col2, .col3, .col4, .col5 {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  #r0, #r1, #r20, #r21  {
+    display: none;
+  }
 }
