@@ -1,19 +1,23 @@
-window.addEventListener('load', init, false);
+import { Board } from './board.js';
+import { dijkstras } from './dijkstras.js';
 
+window.addEventListener('load', init, true);
+
+let newBoard = null;
+
+//Initialize click handlers for dropdown buttons
 function init(){
   document.getElementById('topicBtn').onclick = showDropdown;
   document.getElementById('data').onclick = setTopicData;
   document.getElementById('graph').onclick = setTopicGraph;
   document.getElementById('trees').onclick = setTopicTrees;
-  document.getElementById('wall-btn').onclick = toggleWallAdding;
-  document.getElementById('move-car-btn').onclick = toggleMoveCar;
-
+  document.getElementById('algorithm-btn').onclick = function (e) {
+    setAlgorithm(e.target.innerHTML);
+  }
+  document.getElementById('run-btn').onclick = showPath;
 }
 
-  //.onclick = function() {
-  //   return false;
-  // }
-
+//Shows the dropdown to select a topic
 function showDropdown() {
   let dropDown = document.getElementById("dropMenu");
   let topBtn = document.getElementById('topicBtn');
@@ -29,6 +33,7 @@ function showDropdown() {
   }
 }
 
+//Set the topic to data, change the button, and show the visual
 function setTopicData() {
   let dropDown = document.getElementById("dropMenu");
   let topicBtn = document.getElementById('topicBtn');
@@ -39,7 +44,6 @@ function setTopicData() {
   dropDown.style.display = "none";
   topicBtn.innerHTML = "Data Structures";
   topicBtn.style.backgroundColor = "#9D2235";
-  visualSection.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 
   //Fade in visual
   hideVisuals()
@@ -56,7 +60,13 @@ function setTopicGraph() {
   dropDown.style.display = "none";
   topicBtn.innerHTML = "Graph Search Algorithms";
   topicBtn.style.backgroundColor = "#9D2235";
-  visualSection.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+
+  //Create the board based on screen size
+  let navbarHeight = document.getElementById("nav").clientHeight;
+  let textHeight = document.getElementById("graph-button-bar").clientHeight + document.getElementById("graph-info-bar").clientHeight;
+  let boardHeight = Math.floor((document.documentElement.clientHeight - navbarHeight - textHeight - 500) / 25);
+  let boardWidth = Math.floor(document.documentElement.clientWidth / 25);
+  newBoard = new Board(boardHeight, boardWidth);
 
   //Fade in visual
   hideVisuals();
@@ -74,7 +84,6 @@ function setTopicTrees() {
   dropDown.style.display = "none";
   topicBtn.innerHTML = "Trees";
   topicBtn.style.backgroundColor = "#9D2235";
-  visualSection.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 
   //Fade in visual
   hideVisuals();
@@ -82,6 +91,7 @@ function setTopicTrees() {
 
 }
 
+//Fade in selected element in visuals section
 function fadeIn(element) {
   element.style.display = "block";
   var opacity = 0;
@@ -110,13 +120,19 @@ function hideVisuals() {
   }
 }
 
-function toggleWallAdding() {
-  document.getElementById("grid").classList.toggle("addWall");
-  document.getElementById("grid").classList.remove("moveCar");
-  let squares = document.getElementsByTagName("td");
+//Change the selected algorithm
+//Called from button, value passed based on button selected
+function setAlgorithm(algoName) {
+  let algoLabel = document.getElementById('algo-Name');
+  algoLabel.innerHTML = algoName;
+  newBoard.algorithm = algoName;
 }
 
-function toggleMoveCar() {
-  document.getElementById("grid").classList.toggle("moveCar");
-  document.getElementById("grid").classList.remove("addWall");
+function showPath() {
+  let preNodes = dijkstras(newBoard);
+  let pathNode = preNodes[newBoard.end]; //node before end node along shortest path
+  while(pathNode != newBoard.start) {
+    document.getElementById(pathNode).style.backgroundColor = "green";
+    pathNode = preNodes[pathNode];
+  }
 }

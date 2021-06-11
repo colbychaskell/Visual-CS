@@ -178,8 +178,8 @@ body {
 #graph-visual {
   background-color: white;
   /*width: 100%;*/
-  opacity: 1;
-  display: block;
+  opacity: 0;
+  display: none;
 }
 
 #graph-visual table {
@@ -200,17 +200,43 @@ body {
 }
 
 #graph-visual td:hover {
-  background-color: green;
+  background-color: black;
 }
 
-#graph-visual > .addWall td:hover {
+#board {
+  width: 100%;
+}
+
+#graph-visual > #board > #grid > tr > .car:hover {
+  background-color: white;
+}
+
+#graph-visual > #board > #grid > tr > .house:hover {
+  background-color: white;
+}
+
+#board > .moveCar td:hover {
+  background-image: url("../img/car20.png");
+  background-color: white;
+}
+
+#board > .moveHouse td:hover {
   background-image: url("../img/house20.png");
   background-color: white;
 }
 
-#graph-visual > .moveCar td:hover {
-  background-image: url("../img/car20.png");
-  background-color: white;
+#graph-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#graph-info-bar h2 {
+  margin: 5px 5px;
+}
+
+#algo-name {
+    color: #9D2235;
 }
 
 #graph-visual #grid .car {
@@ -223,12 +249,17 @@ body {
   background-repeat: no-repeat;
 }
 #graph-visual #grid .visited {
-  background-color: blue;
+  background-color: #9D2235;
 }
 
 #graph-visual #grid .path {
-  background-color: green;
+  background-color: #FFC72C;
 }
+
+#graph-visual #grid .wall {
+  background-color: black;
+}
+
 
 #trees-visual {
   background-color: blue;
