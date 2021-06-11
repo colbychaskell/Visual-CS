@@ -34,21 +34,27 @@ export function dijkstras(board) {
     if(currNode.id != board.end) {
       let neighbors = currNode.neighbors;
       for (let i=0; i< neighbors.length; i++) {
-        console.log(neighbors[i])
-        if((visited[neighbors[i]] != true) || ((distanceToNode[currNode.id]+1) < distanceToNode[neighbors[i]])) { //Node is unexplored or edge is a shorter path
-          distanceToNode[neighbors[i]] = distanceToNode[currNode.id] + 1;
-          nodeBefore[neighbors[i]] = currNode.id;
+        let coordinates = neighbors[i].split("-");
+        let r = parseInt(coordinates[0]);
+        let c = parseInt(coordinates[1]);
+        //ignore neighbors outside
+        if(r > 0 && r < board.height && c>0 && c< board.width) {
+          console.log(neighbors[i])
+          if((visited[neighbors[i]] != true) || ((distanceToNode[currNode.id]+1) < distanceToNode[neighbors[i]])) { //Node is unexplored or edge is a shorter path
+            distanceToNode[neighbors[i]] = distanceToNode[currNode.id] + 1;
+            nodeBefore[neighbors[i]] = currNode.id;
 
-          if(visited[neighbors[i]] != true) {
-            visited[neighbors[i]] = true;
-            let childSquare = board.getSquare(neighbors[i])
-            childSquare.distance = distanceToNode[neighbors[i]]
-            pQueue.add(childSquare);
-          }
-          else {
-            let childSquare = board.getSquare(neighbors[i])
-            childSquare.distance = distanceToNode[neighbors[i]]
-            pQueue.add(childSquare);
+            if(visited[neighbors[i]] != true) {
+              visited[neighbors[i]] = true;
+              let childSquare = board.getSquare(neighbors[i])
+              childSquare.distance = distanceToNode[neighbors[i]]
+              pQueue.add(childSquare);
+            }
+            else {
+              let childSquare = board.getSquare(neighbors[i])
+              childSquare.distance = distanceToNode[neighbors[i]]
+              pQueue.add(childSquare);
+            }
           }
         }
       }
