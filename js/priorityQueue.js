@@ -13,7 +13,7 @@ export class PriorityQueue {
     if(pos> 0) {
       //compare pos to its parent node, swap if > parent
       let parentPos = Math.ceil((pos-1)/2);
-      if ((this.contents[pos].distance < this.contents[parentPos].distance)) {
+      if ((this.contents[pos].hueristic <= this.contents[parentPos].hueristic)) {
         [this.contents[pos], this.contents[parentPos]] = [this.contents[parentPos], this.contents[pos]];
         this.trickleUp(parentPos); //repeat on new position
       }
@@ -32,7 +32,7 @@ export class PriorityQueue {
     if ((2*pos+1) < this.size) { //Check if node has children
       let i = null; //position of highest priority child node
       if(2*pos+2 < this.size) {  //two children
-        if(this.contents[2*pos+2].distance < this.contents[2*pos+1].distance) {
+        if(this.contents[2*pos+2].hueristic <= this.contents[2*pos+1].hueristic) {
           i = 2*pos+2;
         }
         else {
@@ -42,7 +42,7 @@ export class PriorityQueue {
       else { //one child
         i=2*pos+1;
       }
-      if (this.contents[i].distance < this.contents[pos].distance) { //swap if value of parent is greater than child
+      if (this.contents[i].hueristic < this.contents[pos].hueristic) { //swap if value of parent is greater than child
         [this.contents[pos], this.contents[i]] = [this.contents[i], this.contents[pos]];
         this.trickleDown(i); //recurse on new location
       }

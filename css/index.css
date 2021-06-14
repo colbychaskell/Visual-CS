@@ -295,6 +295,12 @@ body {
   }
 }
 
+#graph-button-bar {
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Hide rows and cols on smaller screens */
 @media only screen and (max-width: 800px) {
   .col53, .col52, .col51, .col50, .col49, .col0, .col1, .col2, .col3, .col4, .col5 {

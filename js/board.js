@@ -48,7 +48,7 @@ export class Board {
 
     let grid = document.getElementById("grid");
     grid.innerHTML = tableHTML;
-  };
+  }
 
   //Create Event Listeners for each square in the grid
   createEventListeners() {
@@ -110,6 +110,10 @@ export class Board {
     return this.boardArray[r][c];
   }
 
+  isWall(squareID) {
+    return this.getSquare(squareID).status == 'wall';
+  }
+
   setHouse(squareID) {
     let squareElm = document.getElementById(`${squareID}`);
     this.getSquare(squareID).status = "house";
@@ -128,8 +132,22 @@ export class Board {
 
   //Returns ids of all neighboring squares
   neighborNodes(squareID) {
-    let squares = [];
+    return this.getSquare(squareID).neighbors;
+  }
 
+  setVisited(squareID) {
+    document.getElementById(squareID).classList.add('visited');
+  }
+
+  setPath(squareID) {
+    document.getElementById(squareID).classList.add('path');
+  }
+  clearBoard(squareID) {
+    let squares = document.getElementsByTagName('td');
+    for (let i=0; i<squares.length; i++) {
+      squares[i].classList.remove('path');
+      squares[i].classList.remove('visited');
+    }
   }
 
 }

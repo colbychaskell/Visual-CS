@@ -1,9 +1,12 @@
 import { Board } from './board.js';
 import { dijkstras } from './dijkstras.js';
+import { aStar } from './aStar.js';
 
 window.addEventListener('load', init, true);
 
 let newBoard = null;
+let algorithm = 'Dijkstras';
+let algoAnimation = null;
 
 //Initialize click handlers for dropdown buttons
 function init(){
@@ -11,10 +14,20 @@ function init(){
   document.getElementById('data').onclick = setTopicData;
   document.getElementById('graph').onclick = setTopicGraph;
   document.getElementById('trees').onclick = setTopicTrees;
-  document.getElementById('algorithm-btn').onclick = function (e) {
+  document.getElementById('a-star-btn').onclick = function (e) {
     setAlgorithm(e.target.innerHTML);
   }
+  document.getElementById('dijkstras-btn').onclick = function (e) {
+    setAlgorithm(e.target.innerHTML);
+  }
+  document.getElementById('dfs-btn').onclick = function (e) {
+    setAlgorithm('Depth First Search');
+  }
+  document.getElementById('bfs-btn').onclick = function (e) {
+    setAlgorithm('Breadth First Search');
+  }
   document.getElementById('run-btn').onclick = showPath;
+  document.getElementById('clear-btn').onclick = clearPath;
 }
 
 //Shows the dropdown to select a topic
@@ -124,15 +137,55 @@ function hideVisuals() {
 //Called from button, value passed based on button selected
 function setAlgorithm(algoName) {
   let algoLabel = document.getElementById('algo-Name');
+  algorithm = algoName;
   algoLabel.innerHTML = algoName;
   newBoard.algorithm = algoName;
 }
 
 function showPath() {
-  let preNodes = dijkstras(newBoard);
+  clearPath();
+  let outcome = null;
+  if(algorithm == 'Dijkstras') {
+    outcome = dijkstras(newBoard);
+  }
+  else {
+    outcome = aStar(newBoard);
+  }
+  let preNodes = outcome[0];
+  console.log(preNodes);
+  let nodesToShow = outcome[1];
+
   let pathNode = preNodes[newBoard.end]; //node before end node along shortest path
-  while(pathNode != newBoard.start) {
-    document.getElementById(pathNode).style.backgroundColor = "green";
+  let finalPath = [];
+  finalPath.push(newBoard.end);
+
+  while (pathNode != newBoard.start) {
+    finalPath.push(pathNode);
     pathNode = preNodes[pathNode];
   }
+  finalPath.push(newBoard.start);
+  console.log(finalPath);
+  finalPath.reverse();
+  console.log(finalPath);
+
+  let it=0;
+  let it2 = 0;
+  algoAnimation = setInterval(() => {
+    if(it == nodesToShow.length) {
+      newBoard.setPath(finalPath[it2]);
+      it2++;
+      if(it2 == finalPath.length) {
+        clearInterval(algoAnimation);
+      }
+    }
+    else {
+      newBoard.setVisited(nodesToShow[it]);
+      it++;
+    }
+  }, 25);
+}
+
+function clearPath() {
+  newBoard.clearBoard();
+  clearInterval(algoAnimation);
 }
