@@ -11,9 +11,9 @@ let algoAnimation = null;
 //Initialize click handlers for dropdown buttons
 function init(){
   document.getElementById('topicBtn').onclick = showDropdown;
-  document.getElementById('data').onclick = setTopicData;
+  //document.getElementById('data').onclick = setTopicData;
   document.getElementById('graph').onclick = setTopicGraph;
-  document.getElementById('trees').onclick = setTopicTrees;
+  //document.getElementById('trees').onclick = setTopicTrees;
   document.getElementById('a-star-btn').onclick = function (e) {
     setAlgorithm(e.target.innerHTML);
   }
